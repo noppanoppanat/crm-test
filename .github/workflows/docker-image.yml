@@ -139,12 +139,11 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
           script: |
-            cd apps/overlays/develop/crm-test
-            git pull # we pull any changes from git
-            npm prune # we remove any unused dependencies
-            npm install # we install any missing dependencies
-            npm run build # we build our app
-            pm2 reload all # we reload the app via PM2
+            cd apps/overlays/develop/test-crm
+            kustomize edit set image ${{ needs.build.outputs.image_tags }}
+            git add .
+            git commit -m "Set 'web' image tag to '${{ needs.build.outputs.image_tags }}'"
+      - run: git push
 
       
 
