@@ -119,6 +119,14 @@ jobs:
         uses: appleboy/ssh-action@master # An action made to control Linux servers
         with: # We set all our secrets here for the action, these won't be shown in the action logs
           host: ${{ secrets.HOST }}
+      - name: Discord notification (pre-build)
+        uses: appleboy/discord-action@master
+        with:
+          webhook_id: ${{ secrets.DISCORD_WEBHOOK_ID }}
+          webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
+          args: "[Develop] Web-app is being deploy! Hold tight 🔧"
+          color: "#fed330"
+
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
