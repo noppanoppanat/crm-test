@@ -111,14 +111,18 @@ jobs:
         run: cosign sign ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ steps.build-and-push.outputs.digest }}
       
   deploy:
-    runs-on: ubuntu-latest
+  
     needs: build
-    if: github.ref == 'refs/heads/master' # we tell Github to only execute this step if we're on our master branch (so we don't put unfinished branches in production)
+    
+    runs-on: ubuntu-latest
+    
     steps:
-      - name: Deploying to Digitalocean droplet
-        uses: appleboy/ssh-action@master # An action made to control Linux servers
-        with: # We set all our secrets here for the action, these won't be shown in the action logs
-          host: ${{ secrets.HOST }}
+      
+      - name: Setup
+        run: |
+          git config --global user.name "Github Actions"
+          git config --global user.email "actions@github.com"
+          
       - name: Discord notification (pre-build)
         uses: appleboy/discord-action@master
         with:
@@ -126,7 +130,11 @@ jobs:
           webhook_token: ${{ secrets.DISCORD_WEBHOOK_TOKEN }}
           args: "[Develop] Web-app is being deploy! Hold tight 🔧"
           color: "#fed330"
-
+          
+      - name: Deploying to Digitalocean droplet
+        uses: appleboy/ssh-action@master # An action made to control Linux servers
+        with: # We set all our secrets here for the action, these won't be shown in the action logs
+          host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           port: ${{ secrets.PORT }}
