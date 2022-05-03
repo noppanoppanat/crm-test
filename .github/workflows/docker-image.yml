@@ -98,7 +98,7 @@ jobs:
       
   deploy:
     runs-on: ubuntu-latest
-    needs: test # this job depends on "test" having finished
+    needs: build
     if: github.ref == 'refs/heads/master' # we tell Github to only execute this step if we're on our master branch (so we don't put unfinished branches in production)
     steps:
       - name: Deploying to Digitalocean droplet
