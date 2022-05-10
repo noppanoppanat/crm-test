@@ -139,7 +139,8 @@ jobs:
           key: ${{ secrets.KEY }} 
           script: | 
             docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GH_ACCESSTOKEN }}
-            docker run -d -p 80:80 ${{ needs.build.outputs.image_tags }} 
+            docker stop crm-container-test && docker rm crm-container-test
+            docker run -d --name crm-container-test -p 80:80 ${{ needs.build.outputs.image_tags }} 
       
 
 
