@@ -137,8 +137,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
-          script: docker run -d -p 80:80 ${{ github.repository }}
-
+          script: docker run -d -p 80:80 ${{ github.repository }}:${{ needs.build.outputs.image_tags }}
       
 
 
