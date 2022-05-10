@@ -136,10 +136,8 @@ jobs:
         with: # We set all our secrets here for the action, these won't be shown in the action logs
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
-          script: whoami
-      - run: git push
+          key: ${{ secrets.KEY }}
+          script: docker run -d -p 80:80 ${{ github.repository }}
 
       
 
