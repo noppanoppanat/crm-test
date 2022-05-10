@@ -7,7 +7,7 @@ RUN yarn install --ignore-engines
 COPY ./ ./
 RUN yarn build
 
-FROM nginx:1.17-alpine
+FROM nginx:1.17-alpine  
 
 COPY --from=builder /opt/web/build /usr/share/nginx/html
 
