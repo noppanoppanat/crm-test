@@ -139,7 +139,7 @@ jobs:
           key: ${{ secrets.KEY }} 
           script: | 
             docker login ghcr.io -u ${{ github.actor }} -p ${{ secrets.GH_ACCESSTOKEN }}
-            docker run -d -p 80:80 ${{ github.repository }}:${{ needs.build.outputs.image_tags }} 
+            docker run -d -p 80:80 ${{ needs.build.outputs.image_tags }} 
       
 
 
