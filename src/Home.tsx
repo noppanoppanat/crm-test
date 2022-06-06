@@ -4,7 +4,7 @@ import us from './images/IMG_3518.jpeg'
 import './App.css';
 import Navbar from './Navbar';
 import { BrowserRouter as Router,Routes,Route,Link} from 'react-router-dom';
-
+``
 function App() {
   return (
     <div className="App">
@@ -16,10 +16,6 @@ function App() {
             Thank you so much!
           </p>
         </div>
-        
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        {/* <img src={us} className="img-home" width="650px" ></img> */}
-        
         <a
           className="App-link"
           href="https://reactjs.org"
