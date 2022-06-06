@@ -13,7 +13,7 @@ function App() {
           <h1>Odd-e x NewWorld</h1>
           <img src={us} className="img-home" width="650" ></img>
           <p>
-            Thank you so muchh!
+            Thank you so much!
           </p>
         </div>
         <a
